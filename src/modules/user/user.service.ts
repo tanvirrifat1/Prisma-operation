@@ -34,7 +34,44 @@ const insertOrUpdateProfile = async (data: Profile): Promise<Profile> => {
   return result;
 };
 
+const getUser = async () => {
+  const result = await prisma.user.findMany({
+    // select: {
+    //   email: true,
+    //   name: true,
+    // },
+    include: {
+      profile: true,
+    },
+  });
+  return result;
+};
+
+const getSingleUser = async (id: number) => {
+  const result = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      profile: true,
+    },
+  });
+  return result;
+};
+
+const deleteUser = async (id: number) => {
+  const result = await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const UserService = {
   insertIntoDB,
   insertOrUpdateProfile,
+  getUser,
+  getSingleUser,
+  deleteUser,
 };
