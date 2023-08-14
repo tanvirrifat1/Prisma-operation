@@ -16,8 +16,10 @@ const insertIntoDb = async (req: Request, res: Response) => {
 };
 
 const getAllData = async (req: Request, res: Response) => {
+  console.log(req.query);
+  const options = req.query;
   try {
-    const result = await PostService.getAllData();
+    const result = await PostService.getAllData(options);
 
     res.send({
       success: true,
@@ -31,7 +33,7 @@ const getAllData = async (req: Request, res: Response) => {
 
 const getSinglePost = async (req: Request, res: Response) => {
   try {
-    const userID: number = parseInt(req.body.id);
+    const userID: number = parseInt(req.params.id);
     const result = await PostService.getSinglePost(userID);
 
     res.send({

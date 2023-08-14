@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post("/create-post", PostController.insertIntoDb);
 
-router.get("/", PostController.getAllData);
-
 router.get("/:id", PostController.getSinglePost);
+
+router.get("/", PostController.getAllData);
 
 export const PostRoutes = router;
