@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post("/create-post", PostController.insertIntoDb);
 
+router.get("/learn-query", PostController.LearnAggrate);
+
 router.get("/:id", PostController.getSinglePost);
 
 router.patch("/:id", PostController.updateData);

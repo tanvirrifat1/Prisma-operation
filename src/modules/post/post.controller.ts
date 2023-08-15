@@ -78,10 +78,26 @@ const deleteData = async (req: Request, res: Response) => {
   }
 };
 
+const LearnAggrate = async (req: Request, res: Response) => {
+  console.log(req.query);
+  try {
+    const result = await PostService.LearnAggrate();
+
+    res.send({
+      success: true,
+      message: "data aggregate successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 export const PostController = {
   insertIntoDb,
   getAllData,
   getSinglePost,
   updateData,
   deleteData,
+  LearnAggrate,
 };
